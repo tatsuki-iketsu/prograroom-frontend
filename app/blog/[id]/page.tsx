@@ -1,6 +1,6 @@
 // /app/blog/[id]/page.tsx
 import Image from "next/image";
-import Link from "next/link"; // Linkをインポート
+import Link from "next/link";
 import { client } from "@/libs/client";
 import type { Blog } from "@/libs/types";
 
@@ -10,6 +10,24 @@ type Props = {
   };
 };
 
+// 【追加】静的パスを生成する
+export async function generateStaticParams() {
+  const { contents } = await client.get<{ contents: Pick<Blog, 'id'>[] }>({
+    endpoint: "blog",
+    queries: { fields: 'id' } // idのみを取得
+  });
+
+  const paths = contents.map((post) => {
+    return {
+      id: post.id,
+    };
+  });
+
+  return [...paths];
+}
+
+
+// ページのメタ情報（タイトルなど）を動的に設定
 export async function generateMetadata({ params }: Props) {
   const { id } = params;
   const blog = await client.get<Blog>({ endpoint: "blog", contentId: id });
