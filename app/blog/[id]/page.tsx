@@ -5,9 +5,8 @@ import { client } from "@/libs/client";
 import type { Blog } from "@/libs/types";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 // 【追加】静的パスを生成する
