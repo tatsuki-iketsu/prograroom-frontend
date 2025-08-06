@@ -18,6 +18,8 @@ export type Blog = {
   content: string;
   eyecatch?: EyeCatch; // アイキャッチ（任意）
   workingDay?: string; // 作業日（任意）
+  series?: string; // シリーズ（任意）
+  seriesNo?: number; // シリーズNo（任意）
 //   createdAt: string;
 //   updatedAt: string;
 //   publishedAt: string;

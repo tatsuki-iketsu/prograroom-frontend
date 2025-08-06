@@ -52,6 +52,12 @@ export default async function BlogDetail({ params }: Props) {
       <p className="text-gray-500 mb-8">
         公開日: {new Date(blog.publishedAt).toLocaleDateString()}
       </p>
+      {/* シリーズ情報がある場合のみ表示 */}
+      {blog.series && blog.seriesNo && (
+        <p className="text-gray-500 mb-8">
+          シリーズ: {blog.series}&emsp;No&emsp;{blog.seriesNo}
+        </p>
+      )}
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
         className="prose lg:prose-xl max-w-none mb-8"
